@@ -1,0 +1,22 @@
+{
+  "name": "flashcard-generator",
+  "version": "1.0.0",
+  "description": "Generator of flashcards",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbrenner04/Flashcard-Generator.git"
+  },
+  "author": "Christopher Brenner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cbrenner04/Flashcard-Generator/issues"
+  },
+  "homepage": "https://github.com/cbrenner04/Flashcard-Generator#readme",
+  "dependencies": {
+    "inquirer": "^2.0.0"
+  }
+}
