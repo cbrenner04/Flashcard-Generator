@@ -51,5 +51,5 @@ Again, pretty simply, to create a new cloze flashcard:
 
 ```
 var newCloze = new ClozeFlashcard('My favorite color is blue.`, 'blue');
-newBasic.create();
+newCloze.create();
 ```
