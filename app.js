@@ -40,10 +40,26 @@ var addCard = function() {
         if (answer.cardType === 'basic-flashcard') {
             inquirer.prompt([{
                 name: 'front',
-                message: 'What is the question?'
+                message: 'What is the question?',
+                validate: function(input) {
+                    if (input === '') {
+                        console.log('Please provide a question');
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
             }, {
                 name: 'back',
-                message: 'What is the answer?'
+                message: 'What is the answer?',
+                validate: function(input) {
+                    if (input === '') {
+                        console.log('Please provide an answer');
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
             }]).then(function(answer) {
                 var newBasic = new BasicFlashcard(answer.front, answer.back);
                 newBasic.create();
@@ -52,14 +68,37 @@ var addCard = function() {
         } else if (answer.cardType === 'cloze-flashcard') {
             inquirer.prompt([{
                 name: 'text',
-                message: 'What is the full text?'
+                message: 'What is the full text?',
+                validate: function(input) {
+                    if (input === '') {
+                        console.log('Please provide the full text');
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
             }, {
                 name: 'cloze',
-                message: 'What is the cloze portion?'
+                message: 'What is the cloze portion?',
+                validate: function(input) {
+                    if (input === '') {
+                        console.log('Please provide the cloze portion');
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
             }]).then(function(answer) {
-                var newCloze = new ClozeFlashcard(answer.text, answer.cloze);
-                newCloze.create();
-                whatsNext();
+                var text = answer.text;
+                var cloze = answer.cloze;
+                if (text.includes(cloze)) {
+                    var newCloze = new ClozeFlashcard(text, cloze);
+                    newCloze.create();
+                    whatsNext();
+                } else {
+                    console.log('The cloze portion you provided is not found in the full text. Please try again.');
+                    addCard();
+                }
             });
         }
     });
